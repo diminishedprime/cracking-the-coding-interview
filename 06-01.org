@@ -1,0 +1,12 @@
+if we put one pill from each bottle down, then the weight would be
+(+ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20) => 210
+if they all weighed the same, since one will weigh more, we can figure out which one is the weird weight by the total weight
+(+ 1 2 3 4 5 6 7 8 9 (* 10 1.1 )11 12 13 14 15 16 17 18 19 20) => 211.0
+(+ 1 2 3 4 5 6 7 8 9 10 (* 11 1.1) 12 13 14 15 16 17 18 19 20) => 211.1
+(+ (* 1 1.1) 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20) => 210.1
+it looks like if we subtract 210 and then mulitply the result by 10, we will have the bottle that had the different weight of 1.1
+(* (- (+ 1 2 3 4 5 6 7 8 9 (* 10 1.1 )11 12 13 14 15 16 17 18 19 20) 210) 10) => 10.0
+(* (- (+ 1 2 3 4 5 6 7 8 9 10 (* 11 1.1) 12 13 14 15 16 17 18 19 20) 210) 10) => 10.999999999999943 // basically 11
+(* (- (+ (* 1 1.1) 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20) 210) 10) => 0.9999999999999432 // basically 1
+
+so the final equation for the off bottle is (weightOfAllPills - 210) * 10 = 1indexedIndexOfBottleOfPillsWithExtraWeight
